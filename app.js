@@ -477,7 +477,7 @@ function parseCopyResponse(raw) {
   }
 
   if (!headlines.length || !descriptions.length) {
-    throw new Error('Could not parse Claude's response. The raw response has been logged to the console.');
+    throw new Error("Could not parse Claude's response. Check the browser console for the raw output.");
   }
 
   return { headlines, descriptions };
