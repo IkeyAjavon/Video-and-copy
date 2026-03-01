@@ -77,9 +77,14 @@ function initApp() {
     iconEyeOff.style.display = isHidden ? '' : 'none';
   });
 
-  // Drop zone
-  dropZone.addEventListener('click', () => fileInput.click());
-  dropZone.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') fileInput.click(); });
+  // Drop zone — open file picker on click/keypress
+  dropZone.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fileInput.click();
+  });
+  dropZone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+  });
   dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
   dropZone.addEventListener('drop', (e) => {
